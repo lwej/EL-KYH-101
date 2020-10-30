@@ -1,14 +1,22 @@
 int LED = 7;
-int reed_switch = 4;
-int reed_status;
+int REED = 4;
+int STATUS;
+int BAUD = 9600;
 
 void setup() {
 pinMode(LED, OUTPUT);
-pinMode(reed_switch, INPUT);
+pinMode(REED, INPUT);
+Serial.begin(BAUD);
 }
 
 void loop() {
-reed_status = digitalRead(reed_switch);
-if (reed_status == 1) digitalWrite(LED, LOW);
-else digitalWrite(LED, HIGH);delay(1000);
+Serial.print("Reed status: ");
+Serial.println(STATUS);
+STATUS = digitalRead(reed_switch);
+if (STATUS == 1) {
+  digitalWrite(LED, LOW);
+  Serial.println(STATUS);
+} else { digitalWrite(LED, HIGH);
+}
+delay(1000);
 }
