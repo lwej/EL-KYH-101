@@ -11,8 +11,8 @@ Serial.begin(BAUD);
 
 void loop() {
 Serial.print("Reed status: ");
+STATUS = digitalRead(REED);
 Serial.println(STATUS);
-STATUS = digitalRead(reed_switch);
 if (STATUS == 1) {
   digitalWrite(LED, LOW);
   Serial.println(STATUS);
