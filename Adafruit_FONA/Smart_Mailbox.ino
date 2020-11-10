@@ -9,6 +9,8 @@ int reedValue = 0;
 
 char userNumber[32] = "";
 
+uint16_t vbat;
+
 str message = "";
 str battery = "";
 
@@ -42,7 +44,7 @@ void loop() {
     MAIL = true;
     while (MAIL) {
       // Include Battery level
-      battery = fona.getBattPercent();
+      battery = fona.getBattPercent(&vbat);
       //fona_time = fona.getTime();
       message = ("You've got mail " + battery);
 
@@ -74,7 +76,7 @@ void loop() {
   // If SMS is received
   // ????
   if (fona.getSMSSender() == userNumber) {
-    battery = fona.getBattPercent();
+    battery = fona.getBattPercent(&vbat);
     message = "The battery level is: " + battery;
     Serial.println("User requests battery %");
     Serial.println(message);
